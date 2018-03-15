@@ -23,7 +23,7 @@ public:
 
     // default copy ctor/assignment/dtor are okay
 
-    bool valid() const;
+    bool valid() const
     {
         // explicit operator bool() const in c++11
         return static_cast<bool>(data_);
@@ -41,9 +41,9 @@ public:
                                 int hour, int minute, int seconds);
     
 
-    struct Date;
+    struct Data;
 private: 
-    std::shared_ptr<Date> data_;
+    std::shared_ptr<Data> data_;
 };
 
 }
