@@ -8,6 +8,8 @@
 
 #include <muduo/base/CurrentThread.h>
 #include <muduo/base/noncopyable.h>
+
+
 #include <assert.h>
 #include <pthread.h>
 
@@ -66,7 +68,7 @@ public:
     ~MutexLock()
     {
         assert(holder_ == 0);
-        MCHECK(pthread_mutex_destory(&mutex_));
+        MCHECK(pthread_mutex_destroy(&mutex_));
     }
 
     // must bo called when locked, i.e. for assertion
