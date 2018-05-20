@@ -98,7 +98,7 @@ namespace detail
                 muduo::CurrentThread::t_threadName = "crashed";
                 fprintf(stderr, "exception caugth in Thread %s\n", name_.c_str());
                 fprintf(stderr, "reason: %s\n", ex.what());
-                fprintf(stderr, "stack trace: %s\n", ex.stackTree());
+                fprintf(stderr, "stack trace: %s\n", ex.stackTrace());
                 abort();
             }
             catch (const std::exception& ex)

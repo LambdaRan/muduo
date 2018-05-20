@@ -24,6 +24,7 @@ FileUtil::AppendFile::AppendFile(StringArg filename)
         writenBytes_(0)
 {
     assert(fp_);
+    // 设置缓冲区
     ::setbuffer(fp_, buffer_, sizeof(buffer_));
     // posix_fadvise POSIX_FADV_DONTNEED ?
 }
@@ -62,6 +63,7 @@ void FileUtil::AppendFile::flush()
 
 size_t FileUtil::AppendFile::write(const char* logline, size_t len)
 {
+    // fwrite_unlocked是fwrite的线程不安全版本
     // #undef fwrite_unlocked
     return ::fwrite_unlocked(logline, 1, len, fp_);
 }
@@ -159,7 +161,7 @@ int FileUtil::ReadSmallFile::readToBuffer(int* size)
         {
             if (size)
             {
-                *sieze = static_cast<int>(n);
+                *size = static_cast<int>(n);
             }
             buf_[n] = '\n';
         }

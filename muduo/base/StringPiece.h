@@ -174,7 +174,7 @@ public:
             if (length_ < x.length_)
                 r = -1;
             else if (length_ > x.length_)
-                r = +1；
+                r = +1;
         }
         return r;
     }

@@ -14,7 +14,7 @@ namespace muduo
 
 class CountDownLatch : noncopyable
 {
-private: 
+public: 
     explicit CountDownLatch(int count);
 
     void wait();
