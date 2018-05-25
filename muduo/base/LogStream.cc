@@ -72,10 +72,8 @@ size_t convertHex(char buf[], uintptr_t value)
     return p - buf;
 }
 
-template<>
-class FixedBuffer<kSmallBuffer>;
-template<>
-class FixedBuffer<kLargeBuffer>;
+template<> class FixedBuffer<kSmallBuffer>;
+template<> class FixedBuffer<kLargeBuffer>;
 
 } // namespace detail
 } // namespace muduo
@@ -97,6 +95,7 @@ void FixedBuffer<SIZE>::cookieEnd()
 
 void LogStream::staticCheck()
 {
+    // https://en.cppreference.com/w/cpp/types/numeric_limits/digits10
     static_assert(kMaxNumericSize - 10 > std::numeric_limits<double>::digits10, 
                     "kMaxNumericSize is large enough");
     static_assert(kMaxNumericSize - 10 > std::numeric_limits<long double>::digits10, 
@@ -193,6 +192,7 @@ LogStream& LogStream::operator<<(double v)
 template<typename T>
 Fmt::Fmt(const char* fmt, T val)
 {
+    // 若 T 为算术类型（即整数类型或浮点类型）或其 cv 限定版本，则提供等于 true 的成员常量 value
     static_assert(std::is_arithmetic<T>::value == true, 
                     "Must be arithmetic type");
     length_ = snprintf(buf_, sizeof(buf_), fmt, val);
