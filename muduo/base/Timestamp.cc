@@ -29,7 +29,7 @@ string Timestamp::toFormattedString(bool showMicroseconds) const
     char buf[32] = {0};
     time_t seconds = static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond);
     struct tm tm_time;
-    // 函数将日历时间 seconds 转换为以协调世界时（UTC）表示的分解时间表示，存储在　tm_time
+    // 函数将日历时间 seconds 转换为以协调世界时（UTC）表示的分解时间表示，存储在 tm_time
     gmtime_r(&seconds, &tm_time);
 
     if (showMicroseconds)
@@ -51,9 +51,17 @@ string Timestamp::toFormattedString(bool showMicroseconds) const
 
 Timestamp Timestamp::now()
 {
+    // /* A time value that is accurate to the nearest
+    // microsecond but also has a range of years.  */
+    // struct timeval
+    // {
+    //     __time_t tv_sec;		/* Seconds.  */
+    //     __suseconds_t tv_usec;	/* Microseconds.  */
+    // };
     struct timeval tv;
     // https://linux.die.net/man/2/gettimeofday
     // int gettimeofday(struct timeval *tv, struct timezone *tz);
+    // 返回当前距离1970年的秒数和微秒数
     gettimeofday(&tv, NULL);
     int64_t seconds = tv.tv_sec;
     return Timestamp(seconds * kMicroSecondsPerSecond + tv.tv_usec);

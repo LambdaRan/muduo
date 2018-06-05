@@ -13,8 +13,7 @@ ROOTDIR = $(shell pwd)
 OBJDIR = .
 #SRCS = $(wildcard ./*.c)
 SRCDIR = $(ROOTDIR)/muduo/base
-SRCS = $(ROOTDIR)/test/Timestamp_unittest.cc \
-		$(SRCDIR)/Timestamp.cc
+SRCS = $(ROOTDIR)/test/Atomic_unittest.cc
 
 
  #指定头文件目录，代码中就不需要把头文
@@ -32,7 +31,7 @@ test:test.cpp
 	$(CC) $(CXXFLAGS) test.cpp -o main	
 .PHONY: clean
 clean:
-	rm -f $(OBJDIR)/*.o  $(SRCDIR)/*.o $(SRCDIR)/test/*.o $(OBJDIR)/$(PROJECT)
+	rm -f $(OBJDIR)/*.o  $(SRCDIR)/*.o $(ROOTDIR)/test/*.o $(OBJDIR)/$(PROJECT)
 
 
 # SRC = test.cpp 

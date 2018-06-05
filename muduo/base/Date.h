@@ -14,9 +14,12 @@ struct tm;
 
 namespace muduo
 {
-  
+
+// julian day 儒略日  
+// https://en.wikipedia.org/wiki/Julian_day
+
 ///
-/// Date in Gregorian calendar.
+/// Date in Gregorian calendar.公历年;
 ///
 /// This class is immutable.
 /// It's recommended to pass it by value, since it's passed in register on x64.

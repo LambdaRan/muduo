@@ -69,7 +69,7 @@ inline bool operator<(Timestamp lhs, Timestamp rhs)
 {
     return lhs.microSecondsSinceEpoch() < rhs.microSecondsSinceEpoch();
 }
-// P493 赋值（＝），下标（[]），调用（()）,和成员访问箭头（->）运算符必须时成员。
+// P493 赋值（＝），下标（[]），调用（()）,和成员访问箭头（->）运算符必须是成员。
 inline bool operator==(Timestamp lhs, Timestamp rhs)
 {
     return lhs.microSecondsSinceEpoch() == rhs.microSecondsSinceEpoch();
