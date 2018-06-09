@@ -23,7 +23,7 @@ public:
 
     ~Condition()
     {
-        MCHECK(pthread_cond_destory(&pcond_));
+        MCHECK(pthread_cond_destroy(&pcond_));
     }
 
     void wait() 

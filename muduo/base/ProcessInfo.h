@@ -59,8 +59,9 @@ namespace ProcessInfo
     };
     CpuTime cpuTime();
 
-    int numTheads();
+    int numThreads();
     std::vector<pid_t> threads();
+
 } // namespace processinfo
 
 } // namespace muduo

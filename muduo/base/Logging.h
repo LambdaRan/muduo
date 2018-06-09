@@ -33,7 +33,7 @@ public:
               size_(N-1)
         {
             const char* slash = strrchr(data_, '/'); // builtin function
-            if (salash)
+            if (slash)
             {
                 data_ = slash + 1;
                 size_ -= static_cast<int>(data_ - arr);

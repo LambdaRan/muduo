@@ -129,7 +129,7 @@ void Logger::Impl::formatTime()
 {
     int64_t microSecondsSinceEpoch = time_.microSecondsSinceEpoch();
     time_t seconds = static_cast<time_t>(microSecondsSinceEpoch / Timestamp::kMicroSecondsPerSecond);
-    int microSeconds = static_cast<int>(microSecondsSinceEpoch % Timestamp::kMicroSecondsPerSecond);
+    int microseconds = static_cast<int>(microSecondsSinceEpoch % Timestamp::kMicroSecondsPerSecond);
     if (seconds != t_lastSecond)
     {
         t_lastSecond = seconds;
@@ -151,7 +151,7 @@ void Logger::Impl::formatTime()
 
     if (g_logTimeZone.valid())
     {
-        Fmt us(".%06d ", microSeconds);
+        Fmt us(".%06d ", microseconds);
         assert(us.length() == 8);
         stream_ << T(t_time, 17) << T(us.data(), 8);
     }

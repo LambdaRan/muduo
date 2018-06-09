@@ -84,7 +84,7 @@ public:
 
     self& operator<<(bool v)
     {
-        buffer_.append(v ? "1" : "0");
+        buffer_.append(v ? "1" : "0", 1);
         return *this;
     }
 
@@ -99,7 +99,7 @@ public:
     
     self& operator<<(const void*);
 
-    slef& operator<<(float v)
+    self& operator<<(float v)
     {
         *this << static_cast<double>(v);
         return *this;
@@ -137,14 +137,14 @@ public:
 
     self& operator<<(const string& v)
     {
-        buffer_.append(v.str(), v.size());
+        buffer_.append(v.c_str(), v.size());
         return *this;
     }
 
 #ifndef MUDUO_STD_STRING
     self& operator<<(const std::string& v)
     {
-        buffer_.append(v,c_str(), v.size());
+        buffer_.append(v.c_str(), v.size());
         return *this;
     }
 #endif // !1

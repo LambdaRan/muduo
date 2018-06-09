@@ -88,7 +88,7 @@ FileUtil::ReadSmallFile::~ReadSmallFile()
 }
 
 // return errno
-template<typename T>
+template<typename String>
 int FileUtil::ReadSmallFile::readToString(int maxSize,
                                           String* content,
                                           int64_t* fileSize,
@@ -173,25 +173,25 @@ int FileUtil::ReadSmallFile::readToBuffer(int* size)
     return err;
 }
 
-template<>
+template
 int FileUtil::readFile(StringArg filename,
                        int maxSize,
                        string* content,
                        int64_t*, int64_t*, int64_t*);
-template<>
+template
 int FileUtil::ReadSmallFile::readToString(
         int maxSize,
         string* content,
         int64_t*, int64_t*, int64_t*);
 
 #ifndef MUDUO_STD_STRING
-template<> 
+template 
 int FileUtil::readFile(StringArg filename,
                        int maxSize,
                        std::string* content,
                        int64_t*, int64_t*, int64_t*);
 
-template<>
+template
 int FileUtil::ReadSmallFile::readToString(
     int maxSize,
     std::string* content,

@@ -276,7 +276,7 @@ ProcessInfo::CpuTime ProcessInfo::cpuTime()
 // Threads:	1
 // SigQ:	0/15472
 // ... 
-int ProcessInfo::numTheads()
+int ProcessInfo::numThreads()
 {
     int result = 0;
     string status = procStatus();

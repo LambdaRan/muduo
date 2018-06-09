@@ -47,7 +47,9 @@ namespace CurrentThread
     bool isMainThread();
 
     void sleepUsec(int64_t usec);
-}
-}
+
+}// namespace CurrentThread
+
+}// namespace muduo
 
 #endif

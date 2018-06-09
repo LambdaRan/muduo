@@ -7,13 +7,30 @@ CXXFLAGS += -Wall -Wextra -std=c++11
 CC = g++
 
 PROJECT = main
-SYSLIB = 
+SYSLIB = -lpthread
 
 ROOTDIR = $(shell pwd)
 OBJDIR = .
 #SRCS = $(wildcard ./*.c)
 SRCDIR = $(ROOTDIR)/muduo/base
-SRCS = $(ROOTDIR)/test/Atomic_unittest.cc
+
+#processInfo
+SRCS = $(ROOTDIR)/test/ProcessInfo_test.cc \
+		$(SRCDIR)/ProcessInfo.cc \
+		$(SRCDIR)/Timestamp.cc \
+		$(SRCDIR)/FileUtil.cc \
+		$(SRCDIR)/Logging.cc \
+		$(SRCDIR)/TimeZone.cc \
+		$(SRCDIR)/Date.cc \
+		$(SRCDIR)/LogStream.cc \
+		$(SRCDIR)/Thread.cc \
+		$(SRCDIR)/CountDownLatch.cc \
+		$(SRCDIR)/Exception.cc
+
+
+# Date
+# SRCS = $(ROOTDIR)/test/Date_unittest.cc \
+# 		$(SRCDIR)/Date.cc
 
 
  #指定头文件目录，代码中就不需要把头文

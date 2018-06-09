@@ -61,13 +61,13 @@ namespace detail
 
     struct ThreadData 
     {
-        typedef muduo::Thread::ThreadFunc THreadFunc;
-        THreadFunc func_;
+        typedef muduo::Thread::ThreadFunc ThreadFunc;
+        ThreadFunc func_;
         string name_;
         pid_t* tid_;
         CountDownLatch* latch_;
 
-        ThreadData(THreadFunc func,
+        ThreadData(ThreadFunc func,
                    const string& name,
                    pid_t* tid,
                    CountDownLatch* latch)
