@@ -32,7 +32,6 @@ Exception::~Exception() throw()
 // void recoup(int) noexcept;
 // 关键字 noexcept出现在该函数的所有声明语句和定义语句中，
 
-
 // 函数后throw() 说明此函数将不会抛出异常
 // 在C++11新版本中这种使用throw的异常说明方案被取消，而是使用noexcept说明
 // 及一下两种形式等价：

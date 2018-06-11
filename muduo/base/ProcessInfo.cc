@@ -67,11 +67,13 @@ int scanDir(const char* dirpath, int (*filter)(const struct dirent*))
     assert(namelist == NULL);
     return result;
 }
+
 Timestamp g_startTime = Timestamp::now();
 // assume those won't change during the life time of a process.
 int g_clockTicks = static_cast<int>(::sysconf(_SC_CLK_TCK));
 int g_pageSize = static_cast<int>(::sysconf(_SC_PAGE_SIZE));
 }// namespace detail
+
 }// namespace muduo
 
 using namespace muduo;

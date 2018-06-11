@@ -27,7 +27,9 @@ private:
     mutable MutexLock mutex_;
     Condition condition_;
     int count_;
-};
-}
+
+}; // CountDownLatch
+
+} // namespace muduo
 
 #endif

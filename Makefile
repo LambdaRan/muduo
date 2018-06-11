@@ -1,6 +1,6 @@
 #显示所有警告
-CXXFLAGS += -Wall -Wextra -std=c++11
-#CXXFLAGS +=  -Werror -Wfatal-errors
+CXXFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -std=c++11
+#CXXFLAGS +=    -Wfatal-errors
 #-std=c++0x
 #CFLAG += -O #基本优化
 # -g选项，产生供gdb调试用的可执行文件
@@ -14,24 +14,59 @@ OBJDIR = .
 #SRCS = $(wildcard ./*.c)
 SRCDIR = $(ROOTDIR)/muduo/base
 
-#processInfo
-SRCS = $(ROOTDIR)/test/ProcessInfo_test.cc \
-		$(SRCDIR)/ProcessInfo.cc \
-		$(SRCDIR)/Timestamp.cc \
-		$(SRCDIR)/FileUtil.cc \
-		$(SRCDIR)/Logging.cc \
-		$(SRCDIR)/TimeZone.cc \
-		$(SRCDIR)/Date.cc \
-		$(SRCDIR)/LogStream.cc \
+# Mutex_test
+SRCS = $(ROOTDIR)/test/Mutex_test.cc \
 		$(SRCDIR)/Thread.cc \
 		$(SRCDIR)/CountDownLatch.cc \
-		$(SRCDIR)/Exception.cc
+		$(SRCDIR)/Timestamp.cc \
+		$(SRCDIR)/Condition.cc \
+		$(SRCDIR)/Exception.cc \
+		$(SRCDIR)/Logging.cc \
+		$(SRCDIR)/LogStream.cc \
+		$(SRCDIR)/TimeZone.cc \
+		$(SRCDIR)/Date.cc 
 
+
+# Thread_bench
+# SRCS = $(ROOTDIR)/test/Thread_bench.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+#thread_test
+# SRCS = $(ROOTDIR)/test/Thread_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+#processInfo
+# SRCS = $(ROOTDIR)/test/ProcessInfo_test.cc \
+# 		$(SRCDIR)/ProcessInfo.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/FileUtil.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Exception.cc
 
 # Date
 # SRCS = $(ROOTDIR)/test/Date_unittest.cc \
 # 		$(SRCDIR)/Date.cc
-
 
  #指定头文件目录，代码中就不需要把头文
 INCLUDE_DIRS = -I. \

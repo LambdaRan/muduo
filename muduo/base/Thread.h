@@ -50,6 +50,7 @@ private:
 
     static AtomicInt32 numCreated_;
 };
-}
+
+} // namespace muduo
 
 #endif

@@ -172,7 +172,7 @@ int FileUtil::ReadSmallFile::readToBuffer(int* size)
     }
     return err;
 }
-
+// 显示实例化  注意template后没有<>(尖括号)
 template
 int FileUtil::readFile(StringArg filename,
                        int maxSize,

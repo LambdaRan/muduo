@@ -22,6 +22,7 @@ namespace muduo
 {
 namespace CurrentThread
 {
+    // __thread变量每一个线程有一份独立实体，各个线程的变量值互不干扰
     __thread int t_cachedTid = 0;
     __thread char t_tidString[32];
     __thread int t_tidStringLength = 6;
@@ -32,32 +33,34 @@ namespace CurrentThread
 
 namespace detail
 {
+    // 单线程中 pid = tid
+    // 多线程  pid为父进程的pid   tid为线程的真实pid
     pid_t gettid()
     {
         // 获取线程PID
         return static_cast<pid_t>(::syscall(SYS_gettid));
     }
 
-    void afterFork()
-    {
-        muduo::CurrentThread::t_cachedTid = 0;
-        muduo::CurrentThread::t_threadName = "main";
-        CurrentThread::tid();
-        // no need to call pthread_atfork(NULL, NULL, &afterFork);
-    }
+    // void afterFork()
+    // {
+    //     muduo::CurrentThread::t_cachedTid = 0;
+    //     muduo::CurrentThread::t_threadName = "main";
+    //     CurrentThread::tid();
+    //     // no need to call pthread_atfork(NULL, NULL, &afterFork);
+    // }
 
-    class ThreadNameInitializer
-    {
-    public:
-        ThreadNameInitializer()
-        {
-            muduo::CurrentThread::t_threadName = "main";
-            CurrentThread::tid();
-            pthread_atfork(NULL, NULL, &afterFork);
-        }
-    };
+    // class ThreadNameInitializer
+    // {
+    // public:
+    //     ThreadNameInitializer()
+    //     {
+    //         muduo::CurrentThread::t_threadName = "main";
+    //         CurrentThread::tid();
+    //         pthread_atfork(NULL, NULL, &afterFork);
+    //     }
+    // };
 
-    ThreadNameInitializer init;
+    // ThreadNameInitializer init;
 
     struct ThreadData 
     {
@@ -115,7 +118,7 @@ namespace detail
                 throw; //rethrow
             }
         }
-    };
+    }; // struct ThreadData 
 
     void* startThread(void* obj)
     {
@@ -124,8 +127,10 @@ namespace detail
         delete data;
         return NULL;
     }
-}
-}
+
+} // namespace detail
+
+} // namespace muduo
 
 using namespace muduo;
 
@@ -140,6 +145,7 @@ void CurrentThread::cachedTid()
 
 bool CurrentThread::isMainThread()
 {
+    // 主线程的pid 与 tid 相同
     return tid() == ::getpid();
 }
 
@@ -150,6 +156,9 @@ void CurrentThread::sleepUsec(int64_t usec)
   ts.tv_nsec = static_cast<long>(usec % Timestamp::kMicroSecondsPerSecond * 1000);
   ::nanosleep(&ts, NULL);
 }
+
+
+/***************** Thread ********************/
 
 AtomicInt32 Thread::numCreated_;
 
@@ -168,6 +177,7 @@ Thread::~Thread()
 {
     if (started_ && !joined_)
     {
+        // P318 分离线程
         pthread_detach(pthreadId_);
     }
 }
@@ -182,6 +192,7 @@ void Thread::setDefaultName()
         name_ = buf;
     }
 }
+
 void Thread::start()
 {
     assert(!started_);
