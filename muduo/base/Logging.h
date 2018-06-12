@@ -63,7 +63,7 @@ public:
 
     LogStream& stream() { return impl_.stream_; }
 
-    static LogLevel loglevel();
+    static LogLevel logLevel();
     static void setLogLevel(LogLevel level);
 
     typedef void (*OutputFunc)(const char* msg, int len);
@@ -94,7 +94,7 @@ private:
 
 extern Logger::LogLevel g_logLevel;
 
-inline Logger::LogLevel Logger::loglevel()
+inline Logger::LogLevel Logger::logLevel()
 {
     return g_logLevel;
 }
@@ -115,11 +115,11 @@ inline Logger::LogLevel Logger::loglevel()
 //   else
 //     logWarnStream << "Bad news";
 //
-#define LOG_TRACE if (muduo::Logger::loglevel() <= muduo::Logger::TRACE) \
+#define LOG_TRACE if(muduo::Logger::logLevel() <= muduo::Logger::TRACE) \
     muduo::Logger(__FILE__, __LINE__, muduo::Logger::TRACE, __func__).stream()
-#define LOG_DEBUG if (muduo::Logger::logLevel() <= muduo::Logger::DEBUG) \
+#define LOG_DEBUG if(muduo::Logger::logLevel() <= muduo::Logger::DEBUG) \
     muduo::Logger(__FILE__, __LINE__, muduo::Logger::DEBUG, __func__).stream()
-#define LOG_INFO if (muduo::Logger::logLevel() <= muduo::Logger::INFO) \
+#define LOG_INFO if(muduo::Logger::logLevel() <= muduo::Logger::INFO) \
     muduo::Logger(__FILE__, __LINE__).stream()
 #define LOG_WARN muduo::Logger(__FILE__, __LINE__, muduo::Logger::WARN).stream()
 #define LOG_ERROR muduo::Logger(__FILE__, __LINE__, muduo::Logger::ERROR).stream()

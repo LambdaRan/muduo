@@ -68,6 +68,8 @@ size_t FileUtil::AppendFile::write(const char* logline, size_t len)
     return ::fwrite_unlocked(logline, 1, len, fp_);
 }
 
+/*************** ReadSmallFile *********************/
+
 FileUtil::ReadSmallFile::ReadSmallFile(StringArg filename)
     : fd_(::open(filename.c_str(), O_RDONLY | O_CLOEXEC)),
       err_(0)
@@ -101,7 +103,8 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
     if (fd_ > 0)
     {
         content->clear();
-        if (fileSize)
+
+        if (fileSize) // 获取文件信息
         {
             struct stat statbuf;
             if (::fstat(fd_, &statbuf) == 0)
@@ -128,7 +131,7 @@ int FileUtil::ReadSmallFile::readToString(int maxSize,
             {
                 err = errno;
             }
-        }
+        } // if (fileSize)
 
         while (content->size() < implicit_cast<size_t>(maxSize))
         {
@@ -172,6 +175,7 @@ int FileUtil::ReadSmallFile::readToBuffer(int* size)
     }
     return err;
 }
+
 // 显示实例化  注意template后没有<>(尖括号)
 template
 int FileUtil::readFile(StringArg filename,

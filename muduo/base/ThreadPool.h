@@ -21,7 +21,7 @@ namespace muduo
 class ThreadPool : noncopyable
 {
 public: 
-    typedef std::ifunction<void ()> Task;
+    typedef std::function<void ()> Task;
 
     explicit ThreadPool(const string& nameArg = string("ThreadPool"));
     ~ThreadPool();

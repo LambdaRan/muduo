@@ -65,8 +65,7 @@ private:
     Condition notEmpty_;
     std::deque<T> queue_;
 };
-}
 
-
+}// namespace muduo
 
 #endif // MUDUO_BASE_BLOCKINGQUEUE_H

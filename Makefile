@@ -1,5 +1,6 @@
 #显示所有警告
 CXXFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -std=c++11
+CXXFLAGS += -g
 #CXXFLAGS +=    -Wfatal-errors
 #-std=c++0x
 #CFLAG += -O #基本优化
@@ -7,25 +8,162 @@ CXXFLAGS += -Wall -Wextra -Werror -Wconversion -Wshadow -std=c++11
 CC = g++
 
 PROJECT = main
-SYSLIB = -lpthread
+SYSLIB = -lpthread -lz
 
 ROOTDIR = $(shell pwd)
 OBJDIR = .
 #SRCS = $(wildcard ./*.c)
 SRCDIR = $(ROOTDIR)/muduo/base
 
-# Mutex_test
-SRCS = $(ROOTDIR)/test/Mutex_test.cc \
+#GzipFile
+SRCS = $(ROOTDIR)/test/GzipFile_test.cc \
 		$(SRCDIR)/Thread.cc \
-		$(SRCDIR)/CountDownLatch.cc \
-		$(SRCDIR)/Timestamp.cc \
 		$(SRCDIR)/Condition.cc \
 		$(SRCDIR)/Exception.cc \
+		$(SRCDIR)/CountDownLatch.cc \
 		$(SRCDIR)/Logging.cc \
+		$(SRCDIR)/Timestamp.cc \
 		$(SRCDIR)/LogStream.cc \
 		$(SRCDIR)/TimeZone.cc \
-		$(SRCDIR)/Date.cc 
+		$(SRCDIR)/Date.cc
 
+#BoundedBlockingQueue
+# SRCS = $(ROOTDIR)/test/BoundedBlockingQueue_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#BlockingQueue_bench
+# SRCS = $(ROOTDIR)/test/BlockingQueue_bench.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#BlockingQueue
+# SRCS = $(ROOTDIR)/test/BlockingQueue_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#FileUtil
+# SRCS = $(ROOTDIR)/test/FileUtil_test.cc \
+# 		$(SRCDIR)/FileUtil.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#Exception
+# SRCS = $(ROOTDIR)/test/Exception_test.cc \
+# 		$(SRCDIR)/Exception.cc
+
+#Fork
+# SRCS = $(ROOTDIR)/test/Fork_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#SingletonThreadLocal
+# SRCS = $(ROOTDIR)/test/SingletonThreadLocal_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc
+
+#Singleton
+# SRCS = $(ROOTDIR)/test/Singleton_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+#ThreadLocalSingleton
+# SRCS = $(ROOTDIR)/test/ThreadLocalSingleton_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+#ThreadLocal
+# SRCS = $(ROOTDIR)/test/ThreadLocal_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+#ThreadPool
+# SRCS = $(ROOTDIR)/test/ThreadPool_test.cc \
+# 		$(SRCDIR)/ThreadPool.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
+
+# Mutex_test
+# SRCS = $(ROOTDIR)/test/Mutex_test.cc \
+# 		$(SRCDIR)/Thread.cc \
+# 		$(SRCDIR)/CountDownLatch.cc \
+# 		$(SRCDIR)/Timestamp.cc \
+# 		$(SRCDIR)/Condition.cc \
+# 		$(SRCDIR)/Exception.cc \
+# 		$(SRCDIR)/Logging.cc \
+# 		$(SRCDIR)/LogStream.cc \
+# 		$(SRCDIR)/TimeZone.cc \
+# 		$(SRCDIR)/Date.cc 
 
 # Thread_bench
 # SRCS = $(ROOTDIR)/test/Thread_bench.cc \

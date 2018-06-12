@@ -9,6 +9,8 @@
 #include <assert.h>
 #include <stdio.h>
 
+using namespace muduo;
+
 ThreadPool::ThreadPool(const string &nameArg)
     : mutex_(),
       notEmpty_(mutex_),
@@ -38,7 +40,7 @@ void ThreadPool::start(int numThreads)
         snprintf(id, sizeof(id), "%d", i + 1);
         threads_.emplace_back(new muduo::Thread(
             std::bind(&ThreadPool::runInThread, this), name_ + id));
-        threads[i]->start();
+        threads_[i]->start();
     }
 
     if (numThreads == 0 && threadInitCallback_)
@@ -54,7 +56,7 @@ void ThreadPool::stop()
         running_ = false;
         notEmpty_.notifyAll();
     }
-    for (auto &thr : threads)
+    for (auto &thr : threads_)
     {
         thr->join();
     }
@@ -63,7 +65,7 @@ void ThreadPool::stop()
 size_t ThreadPool::queueSize() const
 {
     MutexLockGuard lock(mutex_);
-    return queue.size();
+    return queue_.size();
 }
 void ThreadPool::run(Task task)
 {
@@ -76,7 +78,7 @@ void ThreadPool::run(Task task)
         MutexLockGuard lock(mutex_);
         while (isFull())
         {
-            notFill_.wait();
+            notFull_.wait();
         }
         assert(!isFull());
 
