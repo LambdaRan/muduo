@@ -163,6 +163,7 @@ private:
 // Prevent misuse like:
 // MutexLockGuard(mutex_);
 // A tempory object doesn't hold the lock for long!
+// 防止：遗漏变量名，产生一个临时对象又马上销毁了，结果没有锁住临界区
 #define MutexLockGuard(x) error "Missing guard object name"
 
 
