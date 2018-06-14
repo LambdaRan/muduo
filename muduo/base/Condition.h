@@ -34,12 +34,12 @@ public:
 
     // returns true if time out, false otherwise
     bool waitForSeconds(double seconds);
-
+    // 通常用于表示资源可用
     void notify() 
     {
         MCHECK(pthread_cond_signal(&pcond_));
     }
-
+    // 通常用于表明状态变化
     void notifyAll() 
     {
         MCHECK(pthread_cond_broadcast(&pcond_));
