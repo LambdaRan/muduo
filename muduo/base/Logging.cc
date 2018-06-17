@@ -36,6 +36,7 @@ __thread time_t t_lastSecond;
 
 const char* strerror_tl(int savedErrno)
 {
+    // 线程安全 获取错误的描述字符串
     return strerror_r(savedErrno, t_errnobuf, sizeof(t_errnobuf));
 }
 
@@ -130,7 +131,7 @@ void Logger::Impl::formatTime()
     int64_t microSecondsSinceEpoch = time_.microSecondsSinceEpoch();
     time_t seconds = static_cast<time_t>(microSecondsSinceEpoch / Timestamp::kMicroSecondsPerSecond);
     int microseconds = static_cast<int>(microSecondsSinceEpoch % Timestamp::kMicroSecondsPerSecond);
-    if (seconds != t_lastSecond)
+    if (seconds != t_lastSecond) // 缓存秒
     {
         t_lastSecond = seconds;
         struct tm tm_time;

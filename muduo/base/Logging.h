@@ -9,6 +9,7 @@ namespace muduo
 {
 class TimeZone;
 
+// sizeof(muduo::Logger) = 4056
 class Logger
 {
 public: 

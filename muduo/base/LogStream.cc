@@ -71,7 +71,7 @@ size_t convertHex(char buf[], uintptr_t value)
 
     return p - buf;
 }
-
+// 模板实例化
 template class FixedBuffer<kSmallBuffer>;
 template class FixedBuffer<kLargeBuffer>;
 
@@ -118,7 +118,7 @@ void LogStream::formatInteger(T v)
 
 LogStream& LogStream::operator<<(short v)
 {
-    *this << static_cast<unsigned int>(v);
+    *this << static_cast<int>(v);
     return *this;
 }
 
@@ -171,7 +171,7 @@ LogStream& LogStream::operator<<(const void* p)
     {
         char* buf = buffer_.current();
         buf[0] = '0';
-        buf[0] = 'x';
+        buf[1] = 'x';
         size_t len = convertHex(buf+2, v);
         buffer_.add(len+2);
     }
@@ -179,6 +179,7 @@ LogStream& LogStream::operator<<(const void* p)
 }
 
 // FIXME: replace this with Grisu3 by Florian Loitsch.
+// Grisu 是把浮点数转换为字符串的算法
 LogStream& LogStream::operator<<(double v)
 {
     if (buffer_.avail() >= kMaxNumericSize)

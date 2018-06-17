@@ -65,7 +65,7 @@ public:
     
 private: 
     const char* end() const {return data_ + sizeof(data_); }    
-    // Must be outline function for cllkies
+    // Must be outline function for cookies
     static void cookieStart();
     static void cookieEnd();
 
@@ -74,8 +74,10 @@ private:
     char* cur_;
 };
 
-}
+} // namespace detail
 
+// sizeof(muduo::LogStream) = 4024
+// sizeof(muduo::LogStream::Buffer) = 4016
 class LogStream : noncopyable
 {
     typedef LogStream self;
@@ -147,7 +149,7 @@ public:
         buffer_.append(v.c_str(), v.size());
         return *this;
     }
-#endif // !1
+#endif // MUDUO_STD_STRING
     
     self& operator<<(const StringPiece& v)
     {
@@ -173,6 +175,7 @@ private:
     static const int kMaxNumericSize = 32;
 };
 
+// sizeof(muduo::Fmt) = 36
 class Fmt // : noncopyable
 {
 public: 
@@ -193,6 +196,5 @@ inline LogStream& operator<<(LogStream& s, const Fmt& fmt)
     return s;
 }
 
-
-}
+} // namespace muduo
 #endif // !1

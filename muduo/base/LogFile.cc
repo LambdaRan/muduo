@@ -8,9 +8,10 @@
 #include <stdio.h>
 #include <time.h>
 
+
 using namespace muduo;
 
-LogFile::LogFile(const string& basename
+LogFile::LogFile(const string& basename,
                  off_t rollSize,
                  bool threadSafe,
                  int flushInterval,
@@ -72,8 +73,9 @@ void LogFile::append_unlocked(const char* logline, int len)
         if (count_ >= checkEveryN_)
         {
             count_ = 0;
+            // returns  the  time  as  the  number of seconds since the Epoch,1970-01-01 00:00:00 +0000 (UTC).
             time_t now = ::time(NULL);
-            time_t thisPeriod_ = now / kRollPerSeconds_ * kRollPerSeconds_;
+            time_t thisPeriod_ = now / kRollPerSeconds_ * kRollPerSeconds_;         
             if (thisPeriod_ != startOfPeriod_)
             {
                 rollFile();
