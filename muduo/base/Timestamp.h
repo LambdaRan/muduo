@@ -11,21 +11,23 @@ namespace muduo
 // This class is immutable
 // It's recommended to pass it by value, since it's passed in register on x64
 class Timestamp : public muduo::copyable,
-                public boost::equality_comparable<Timestamp>,
-                public boost::less_than_comparable<Timestamp>
+                  public boost::equality_comparable<Timestamp>,
+                  public boost::less_than_comparable<Timestamp>
 {
-public: 
+  public:
     // constructs an invalid Timestamp
     Timestamp()
         : microSecondsSinceEpoch_(0)
-    {}
+    {
+    }
 
     // constructs a Timestamp at specific time
     explicit Timestamp(int64_t microSecondsSinceEpochArg)
         : microSecondsSinceEpoch_(microSecondsSinceEpochArg)
-    {}
+    {
+    }
 
-    void swap(Timestamp& that)
+    void swap(Timestamp &that)
     {
         std::swap(microSecondsSinceEpoch_, that.microSecondsSinceEpoch_);
     }
@@ -39,9 +41,9 @@ public:
 
     // for internal usage
     int64_t microSecondsSinceEpoch() const { return microSecondsSinceEpoch_; }
-    time_t secondsSinceEpoch() const 
+    time_t secondsSinceEpoch() const
     {
-        return static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond); 
+        return static_cast<time_t>(microSecondsSinceEpoch_ / kMicroSecondsPerSecond);
     }
 
     // get time of now
@@ -61,7 +63,8 @@ public:
         return Timestamp(static_cast<int64_t>(t) * kMicroSecondsPerSecond + microseconds);
     }
     static const int kMicroSecondsPerSecond = 1000 * 1000;
-private:
+
+  private:
     int64_t microSecondsSinceEpoch_;
 };
 
@@ -82,6 +85,17 @@ inline double timeDifference(Timestamp high, Timestamp low)
     return static_cast<double>(diff) / Timestamp::kMicroSecondsPerSecond;
 }
 
+///
+/// Add @c seconds to given timestamp.
+///
+/// @return timestamp+seconds as Timestamp
+///
+inline Timestamp addTime(Timestamp timestamp, double seconds)
+{
+    int64_t delta = static_cast<int64_t>(seconds * Timestamp::kMicroSecondsPerSecond);
+    return Timestamp(timestamp.microSecondsSinceEpoch() + delta);
 }
+
+} // namespace muduo
 
 #endif

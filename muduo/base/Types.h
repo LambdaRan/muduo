@@ -79,6 +79,8 @@ typedef __gnu_cxx::__sso_string string;
 // implicit_cast would have been part of the C++ standard library,
 // but the proposal was submitted too late.  It will probably make
 // its way into the language in the future.
+
+// 向上转换
 template<typename To, typename From>
 inline To implicit_cast(From const &f)
 {
@@ -103,6 +105,7 @@ inline To implicit_cast(From const &f)
 //    if (dynamic_cast<Subclass2>(foo)) HandleASubclass2Object(foo);
 // You should design the code some other way not to need this.
 
+// 安全向下转型
 template<typename To, typename From>     // use like this: down_cast<T*>(foo);
 inline To down_cast(From* f)                     // so we only accept pointers
 {
@@ -110,7 +113,7 @@ inline To down_cast(From* f)                     // so we only accept pointers
   // for compile-time type checking, and has no overhead in an
   // optimized build at run-time, as it will be optimized away
   // completely.
-  if (false)
+  if (false) // 让编译器帮助做类型检查
   {
     implicit_cast<From*, To>(0);
   }

@@ -18,7 +18,7 @@ namespace muduo
 {
 namespace net 
 {
-namespace socketes
+namespace sockets
 {
 // the inline assembler code makes type blur,
 // so we disable warnings for a while.

@@ -41,26 +41,27 @@ namespace detail
         return static_cast<pid_t>(::syscall(SYS_gettid));
     }
 
-    // void afterFork()
-    // {
-    //     muduo::CurrentThread::t_cachedTid = 0;
-    //     muduo::CurrentThread::t_threadName = "main";
-    //     CurrentThread::tid();
-    //     // no need to call pthread_atfork(NULL, NULL, &afterFork);
-    // }
+    // 防止程序执行fork(2) 看到陈旧的缓存结果
+    void afterFork()
+    {
+        muduo::CurrentThread::t_cachedTid = 0;
+        muduo::CurrentThread::t_threadName = "main";
+        CurrentThread::tid();
+        // no need to call pthread_atfork(NULL, NULL, &afterFork);
+    }
 
-    // class ThreadNameInitializer
-    // {
-    // public:
-    //     ThreadNameInitializer()
-    //     {
-    //         muduo::CurrentThread::t_threadName = "main";
-    //         CurrentThread::tid();
-    //         pthread_atfork(NULL, NULL, &afterFork);
-    //     }
-    // };
+    class ThreadNameInitializer
+    {
+    public:
+        ThreadNameInitializer()
+        {
+            muduo::CurrentThread::t_threadName = "main";
+            CurrentThread::tid();
+            pthread_atfork(NULL, NULL, &afterFork);
+        }
+    };
 
-    // ThreadNameInitializer init;
+    ThreadNameInitializer init;
 
     struct ThreadData 
     {
@@ -183,7 +184,7 @@ Thread::~Thread()
 }
 
 void Thread::setDefaultName()
-{
+{ 
     int num = numCreated_.incrementAndGet();
     if (name_.empty())
     {
