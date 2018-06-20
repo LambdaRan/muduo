@@ -60,9 +60,9 @@ private:
     muduo::CountDownLatch latch_;
     muduo::MutexLock mutex_;
     muduo::Condition cond_;
-    BufferPtr currentBuffer_;
-    BufferPtr nextBuffer_;
-    BufferVector buffers_;
+    BufferPtr currentBuffer_; // 当前缓冲
+    BufferPtr nextBuffer_; // 预备缓冲
+    BufferVector buffers_; // 待写入文件的已填满的缓冲
 };
 
 } // namespace muduo

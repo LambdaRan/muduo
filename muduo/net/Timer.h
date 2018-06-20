@@ -49,10 +49,11 @@ public:
     static int64_t numCreated() { return s_numCreated_.get(); }
 
 private: 
+    // <Callbacks.h>
     const TimerCallback callback_;
-    Timestamp expiration_;
-    const double interval_;
-    const bool repeat_;
+    Timestamp expiration_; // 到期时间
+    const double interval_; // 时间间隔
+    const bool repeat_; // 是否重复
     const int64_t sequence_;
 
     static AtomicInt64 s_numCreated_;

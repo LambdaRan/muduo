@@ -39,6 +39,7 @@ class Channel : noncopyable
     ~Channel();
 
     void handleEvent(Timestamp receiveTime);
+
     void setReadCallback(ReadEventCallback cb)
     {
         readCallback_ = std::move(cb);
@@ -118,15 +119,15 @@ class Channel : noncopyable
 
     EventLoop *loop_;
     const int fd_;
-    int events_;
-    int revents_; // it's the received event types of epoll or poll
+    int events_; // 要监听的事件
+    int revents_; // 发生的事件 // it's the received event types of epoll or poll
     int index_;   // used by Poller
     bool logHup_;
 
     std::weak_ptr<void> tie_;
     bool tied_;
     bool eventHandling_;
-    bool addedToLoop_;
+    bool addedToLoop_; // 是否添加到事件循环中
     ReadEventCallback readCallback_;
     EventCallback writeCallback_;
     EventCallback closeCallback_;

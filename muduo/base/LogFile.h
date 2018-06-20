@@ -37,7 +37,7 @@ private:
 
     const string basename_;
     const off_t rollSize_; //日志文件达到rolsize生成一个新文件
-    const int flushInterval_; // 日志写入间隔
+    const int flushInterval_; // 日志写入间隔,定期flush到磁盘
     const int checkEveryN_; // 每多少次flush一次
 
     int count_; //写入日志次数，配合checkEveryN_
