@@ -153,7 +153,7 @@ class EventLoop : noncopyable
     bool eventHandling_;          // atomic
     bool callingPendingFunctors_; // atomic
     int64_t iteration_; // loop() 统计循环次数
-    const pid_t threadId_; // 此线程ID
+    const pid_t threadId_; // 此对象所属线程
     Timestamp pollReturnTime_;
     std::unique_ptr<Poller> poller_;
     std::unique_ptr<TimerQueue> timerQueue_;
