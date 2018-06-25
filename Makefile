@@ -13,217 +13,149 @@ SYSLIB = -lpthread
 ROOTDIR = $(shell pwd)
 OBJDIR = .
 #SRCS = $(wildcard ./*.c)
-SRCDIR = $(ROOTDIR)/muduo/base
+
+SRCDIRBASE = $(ROOTDIR)/muduo/base
+SRCDIRNET = $(ROOTDIR)/muduo/net
 
 
-#AsyncLogging
-SRCS = $(ROOTDIR)/test/AsyncLogging_test.cc \
-		$(SRCDIR)/AsyncLogging.cc \
-		$(SRCDIR)/LogFile.cc \
-		$(SRCDIR)/FileUtil.cc \
-		$(SRCDIR)/ProcessInfo.cc \
-		$(SRCDIR)/Thread.cc \
-		$(SRCDIR)/Condition.cc \
-		$(SRCDIR)/Exception.cc \
-		$(SRCDIR)/CountDownLatch.cc \
-		$(SRCDIR)/Logging.cc \
-		$(SRCDIR)/Timestamp.cc \
-		$(SRCDIR)/LogStream.cc \
-		$(SRCDIR)/TimeZone.cc \
-		$(SRCDIR)/Date.cc
+#TimerQueue
+SRCS = $(ROOTDIR)/test_net/TimerQueue_unittest.cc \
+		$(SRCDIRNET)/TimerQueue.cc \
+		$(SRCDIRNET)/EventLoopThread.cc \
+		$(SRCDIRNET)/Channel.cc \
+		$(SRCDIRNET)/EventLoop.cc \
+		$(SRCDIRNET)/SocketsOps.cc \
+		$(SRCDIRNET)/Poller.cc \
+		$(SRCDIRNET)/poller/DefaultPoller.cc \
+		$(SRCDIRNET)/poller/PollPoller.cc \
+		$(SRCDIRNET)/poller/EPollPoller.cc \
+		$(SRCDIRNET)/Timer.cc \
+		$(SRCDIRBASE)/Logging.cc \
+		$(SRCDIRBASE)/Timestamp.cc \
+		$(SRCDIRBASE)/LogStream.cc \
+		$(SRCDIRBASE)/TimeZone.cc \
+		$(SRCDIRBASE)/Date.cc \
+		$(SRCDIRBASE)/Thread.cc \
+		$(SRCDIRBASE)/CountDownLatch.cc \
+		$(SRCDIRBASE)/Exception.cc \
+		$(SRCDIRBASE)/Condition.cc 
 
-#LogFile
-# SRCS = $(ROOTDIR)/test/LogFile_test.cc \
-# 		$(SRCDIR)/LogFile.cc \
-# 		$(SRCDIR)/FileUtil.cc \
-# 		$(SRCDIR)/ProcessInfo.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
+#EventLoopThreadPool
+# SRCS = $(ROOTDIR)/test_net/EventLoopThreadPool_unittest.cc \
+# 		$(SRCDIRNET)/EventLoopThreadPool.cc \
+# 		$(SRCDIRNET)/EventLoopThread.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc
 
-#Loging
-# SRCS = $(ROOTDIR)/test/Logging_test.cc \
-# 		$(SRCDIR)/ThreadPool.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/ProcessInfo.cc \
-# 		$(SRCDIR)/LogFile.cc \
-# 		$(SRCDIR)/FileUtil.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
+#EventLoopThread
+# SRCS = $(ROOTDIR)/test_net/EventLoopThread_unittest.cc \
+# 		$(SRCDIRNET)/EventLoopThread.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
-#LogStream_bench
-# SRCS = $(ROOTDIR)/test/LogStream_bench.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/Timestamp.cc
 
-#LogStream
-# SRCS = $(ROOTDIR)/test/LogStream_test.cc \
-# 		$(SRCDIR)/LogStream.cc 
+#InetAdderss
+# SRCS = $(ROOTDIR)/test_net/InetAddress_unittest.cc \
+# 		$(SRCDIRNET)/InetAddress.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
-#GzipFile
-# SRCS = $(ROOTDIR)/test/GzipFile_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
+#EventLoop
+# SRCS = $(ROOTDIR)/test_net/EventLoop_unittest.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
-#BoundedBlockingQueue
-# SRCS = $(ROOTDIR)/test/BoundedBlockingQueue_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
+# Channel
+# SRCS = $(ROOTDIR)/test_net/Channel_test.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
-#BlockingQueue_bench
-# SRCS = $(ROOTDIR)/test/BlockingQueue_bench.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
+#Buffer
+# SRCS = $(ROOTDIR)/test_net/Buffer_unittest.cc \
+# 		$(SRCDIRNET)/Buffer.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
-#BlockingQueue
-# SRCS = $(ROOTDIR)/test/BlockingQueue_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
-
-#FileUtil
-# SRCS = $(ROOTDIR)/test/FileUtil_test.cc \
-# 		$(SRCDIR)/FileUtil.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
-
-#Exception
-# SRCS = $(ROOTDIR)/test/Exception_test.cc \
-# 		$(SRCDIR)/Exception.cc
-
-#Fork
-# SRCS = $(ROOTDIR)/test/Fork_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
-
-#SingletonThreadLocal
-# SRCS = $(ROOTDIR)/test/SingletonThreadLocal_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc
-
-#Singleton
-# SRCS = $(ROOTDIR)/test/Singleton_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-#ThreadLocalSingleton
-# SRCS = $(ROOTDIR)/test/ThreadLocalSingleton_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-#ThreadLocal
-# SRCS = $(ROOTDIR)/test/ThreadLocal_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-#ThreadPool
-# SRCS = $(ROOTDIR)/test/ThreadPool_test.cc \
-# 		$(SRCDIR)/ThreadPool.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-# Mutex_test
-# SRCS = $(ROOTDIR)/test/Mutex_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-# Thread_bench
-# SRCS = $(ROOTDIR)/test/Thread_bench.cc \
 # 		$(SRCDIR)/Thread.cc \
 # 		$(SRCDIR)/CountDownLatch.cc \
 # 		$(SRCDIR)/Exception.cc \
@@ -233,39 +165,11 @@ SRCS = $(ROOTDIR)/test/AsyncLogging_test.cc \
 # 		$(SRCDIR)/Timestamp.cc \
 # 		$(SRCDIR)/TimeZone.cc \
 # 		$(SRCDIR)/Date.cc 
-
-#thread_test
-# SRCS = $(ROOTDIR)/test/Thread_test.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Exception.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/Condition.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc 
-
-#processInfo
-# SRCS = $(ROOTDIR)/test/ProcessInfo_test.cc \
-# 		$(SRCDIR)/ProcessInfo.cc \
-# 		$(SRCDIR)/Timestamp.cc \
-# 		$(SRCDIR)/FileUtil.cc \
-# 		$(SRCDIR)/Logging.cc \
-# 		$(SRCDIR)/TimeZone.cc \
-# 		$(SRCDIR)/Date.cc \
-# 		$(SRCDIR)/LogStream.cc \
-# 		$(SRCDIR)/Thread.cc \
-# 		$(SRCDIR)/CountDownLatch.cc \
-# 		$(SRCDIR)/Exception.cc
-
-# Date
-# SRCS = $(ROOTDIR)/test/Date_unittest.cc \
-# 		$(SRCDIR)/Date.cc
 
  #指定头文件目录，代码中就不需要把头文
 INCLUDE_DIRS = -I. \
-			   -I$(SRCDIR) 
+			   -I$(SRCDIRBASE) \
+			   -I$(SRCDIRNET)
 OBJS = $(patsubst %.cc,%.o,$(SRCS))
 
 $(PROJECT):$(OBJS)

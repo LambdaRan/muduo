@@ -39,7 +39,7 @@ class InetAddress : public muduo::copyable
 
     /// Constructs an endpoint with given ip and port.
     /// @c ip should be "1.2.3.4"
-    InetAddress(StringPiece ip, uint16_t port, bool ipv6 = false);
+    InetAddress(StringArg ip, uint16_t port, bool ipv6 = false);
 
     /// Constructs an endpoint with given struct @c sockaddr_in
     /// Mostly used when accepting new connections
@@ -58,7 +58,7 @@ class InetAddress : public muduo::copyable
 
     // default copy/assignment are Okay
 
-    const struct sockaddr* getSockAddr() const { return sockets::sockaddr_cast(&addr6_)};
+    const struct sockaddr* getSockAddr() const { return sockets::sockaddr_cast(&addr6_); }
     void setSockAddrInet6(const struct sockaddr_in6& addr6) { addr6_ = addr6; }
     
     uint32_t ipNetEndian() const;

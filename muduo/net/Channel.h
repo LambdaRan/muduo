@@ -65,7 +65,7 @@ class Channel : noncopyable
     int events() const { return events_; }
     void set_revents(int revt) { revents_ = revt; } // used by pollers
     // int revents() const { return revents_; }
-    bool isNoneEvent() const { return ecents == kNoneEvent; }
+    bool isNoneEvent() const { return events_ == kNoneEvent; }
     void enableReading()
     {
         events_ |= kReadEvent;
@@ -118,7 +118,7 @@ class Channel : noncopyable
     static const int kWriteEvent;
 
     EventLoop *loop_;
-    const int fd_;
+    const int fd_; // 暂存事件IOf d
     int events_; // 要监听的事件
     int revents_; // 发生的事件 // it's the received event types of epoll or poll
     int index_;   // used by Poller
@@ -127,7 +127,7 @@ class Channel : noncopyable
     std::weak_ptr<void> tie_;
     bool tied_;
     bool eventHandling_;
-    bool addedToLoop_; // 是否添加到事件循环中
+    bool addedToLoop_; // 是否已经添加到事件循环中
     ReadEventCallback readCallback_;
     EventCallback writeCallback_;
     EventCallback closeCallback_;

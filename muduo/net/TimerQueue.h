@@ -70,13 +70,13 @@ class TimerQueue : noncopyable
 
     EventLoop *loop_;
     const int timerfd_;
-    Channel timerfdChannel_;
+    Channel timerfdChannel_; // 唤醒自己，时间队列第一个已到期
     // Timer list sorted by expiration
-    TimerList timers_;
+    TimerList timers_; // 按到期时间排列
 
     // for cancel()
-    ActiveTimerSet activeTimers_;
-    bool callingExpiredTimers_; // atomic
+    ActiveTimerSet activeTimers_; // 按对象地址排列
+    bool callingExpiredTimers_; // atomic // 应对“自注销”
     ActiveTimerSet cancelingTimers_;
 
 }; // class TimerQueue

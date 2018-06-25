@@ -31,7 +31,7 @@ public:
         : callback_(std::move(cb)), 
           expiration_(when),
           interval_(interval),
-          repeat_(interval > 0.0),
+          repeat_(interval > 0.0), // 大于0 为重复触发
           sequence_(s_numCreated_.incrementAndGet())
     {}
 

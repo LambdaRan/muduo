@@ -151,8 +151,7 @@ void TimerQueue::cancelInLoop(TimerId timerId)
     if (it != activeTimers_.end())
     {
         size_t n = timers_.erase(Entry(it->first->expiration(), it->first));
-        assert(n == 10);
-        (void)n;
+        assert(n == 1);(void)n;
         delete it->first; // FIXME: no delete please
         activeTimers_.erase(it);
     }
@@ -160,7 +159,7 @@ void TimerQueue::cancelInLoop(TimerId timerId)
     {
         cancelingTimers_.insert(timer);
     }
-    assert(timer_.size() == activeTimers_.size());
+    assert(timers_.size() == activeTimers_.size());
 }
 
 void TimerQueue::handleRead()
@@ -243,18 +242,19 @@ bool TimerQueue::insert(Timer *timer)
     bool earliestChanged = false;
     Timestamp when = timer->expiration();
     TimerList::iterator it = timers_.begin();
+    // 添加的事件比事件队列中的第一个要早
     if (it == timers_.end() || when < it->first)
     {
         earliestChanged = true;
     }
     {
         std::pair<TimerList::iterator, bool> result = timers_.insert(Entry(when, timer));
-        assert(result.second);
+        assert(result.second); // pair<iterator, bool>
         (void)result;
     }
     {
         std::pair<ActiveTimerSet::iterator, bool> result = activeTimers_.insert(ActiveTimer(timer, timer->sequence()));
-        assert(result.second);
+        assert(result.second); // pair<iterator, bool>
         (void)result;
     }
 

@@ -21,8 +21,7 @@ EventLoopThread::EventLoopThread(const ThreadInitCallback &cb,
       mutex_(),
       cond_(mutex_),
       callback_(cb)
-{
-}
+{}
 
 EventLoopThread::~EventLoopThread()
 {
@@ -38,7 +37,7 @@ EventLoopThread::~EventLoopThread()
 
 EventLoop* EventLoopThread::startLoop()
 {
-    assert(!thread_.started();
+    assert(!thread_.started());
     thread_.start();
 
     {
@@ -66,7 +65,7 @@ void EventLoopThread::threadFunc()
         loop_ = &loop;
         cond_.notify();
     }
-    loop_.loop();
+    loop.loop();
     // assert(exiting_);
     loop_ = NULL;
 }

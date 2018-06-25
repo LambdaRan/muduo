@@ -21,12 +21,10 @@ using namespace muduo::net;
 
 PollPoller::PollPoller(EventLoop *loop)
     : Poller(loop)
-{
-}
+{}
 
 PollPoller::~PollPoller()
-{
-}
+{}
 
 Timestamp PollPoller::poll(int timeoutMs, ChannelList *activeChannels)
 {
@@ -62,7 +60,7 @@ void PollPoller::fillActiveChannels(int numEvents,
     {
         if (pfd->revents > 0)
         {
-            --numEvents;
+            --numEvents; // 提前结束搜索
             ChannelMap::const_iterator ch = channels_.find(pfd->fd);
             assert(ch != channels_.end());
             Channel *channel = ch->second;

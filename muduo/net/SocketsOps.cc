@@ -109,7 +109,7 @@ int sockets::createNonblockingOrDie(sa_family_t family)
 
     setNonBlockAndCloseOnExec(sockfd);
 #else
-    int sockfd = ::socket(family, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC | IPPROTO_TCP);
+    int sockfd = ::socket(family, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP);
     if (sockfd < 0)
     {
         LOG_SYSFATAL << "sockets::createNonblockingOrDie";

@@ -31,8 +31,7 @@ Channel::Channel(EventLoop *loop, int fd)
       tied_(false),
       eventHandling_(false),
       addedToLoop_(false)
-{
-}
+{}
 
 Channel::~Channel()
 {

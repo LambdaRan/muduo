@@ -74,6 +74,7 @@ private:
     const char* str_;
 };
 
+
 class StringPiece 
 {
 private:  
