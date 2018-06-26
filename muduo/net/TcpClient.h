@@ -79,6 +79,7 @@ class TcpClient : noncopyable
     void removeConnection(const TcpConnectionPtr &conn);
 
     EventLoop *loop_;
+    // 连接器 Connector
     ConnectorPtr connector_; // avoid revealing Connector
     const string name_;
     ConnectionCallback connectionCallback_;

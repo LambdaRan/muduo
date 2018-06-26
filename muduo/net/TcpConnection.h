@@ -163,15 +163,15 @@ class TcpConnection : noncopyable,
     bool reading_;
     // we don't expose those classes to client.
     std::unique_ptr<Socket> socket_;
-    std::unique_ptr<Channel> channel_;
-    const InetAddress localAddr_;
-    const InetAddress peerAddr_;
+    std::unique_ptr<Channel> channel_; // sockfd 事件
+    const InetAddress localAddr_; // 本地地址
+    const InetAddress peerAddr_; // 对端地址
     ConnectionCallback connectionCallback_;
     MessageCallback messageCallback_;
     WriteCompleteCallback writeCompleteCallback_; // 低水位回调，发送缓冲区被清空，触发回调
     HighWaterMarkCallback highWaterMarkCallback_; // 高水位回调，如果输出缓冲区的长度超过用户指定的大小，触发回调
     CloseCallback closeCallback_;
-    size_t highWaterMark_;
+    size_t highWaterMark_; // 高水位阈值
     Buffer inputBuffer_;
     Buffer outputBuffer_; // FIXME: use list<Buffer> as output buffer.
     boost::any context_;

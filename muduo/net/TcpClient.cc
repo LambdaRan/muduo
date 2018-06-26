@@ -45,6 +45,7 @@ void removeConnection(EventLoop *loop, const TcpConnectionPtr &conn)
 void removeConnector(const ConnectorPtr &connector)
 {
     //connector->
+    (void)connector;
 }
 
 } // namespace detail

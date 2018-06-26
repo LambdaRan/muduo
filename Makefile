@@ -17,19 +17,24 @@ OBJDIR = .
 SRCDIRBASE = $(ROOTDIR)/muduo/base
 SRCDIRNET = $(ROOTDIR)/muduo/net
 
-
-#TimerQueue
-SRCS = $(ROOTDIR)/test_net/TimerQueue_unittest.cc \
+#TcpClient
+SRCS = $(ROOTDIR)/test_net/TcpClient_reg3.cc \
+		$(SRCDIRNET)/TcpClient.cc \
+		$(SRCDIRNET)/TcpConnection.cc \
+		$(SRCDIRNET)/Connector.cc \
 		$(SRCDIRNET)/TimerQueue.cc \
 		$(SRCDIRNET)/EventLoopThread.cc \
 		$(SRCDIRNET)/Channel.cc \
 		$(SRCDIRNET)/EventLoop.cc \
+		$(SRCDIRNET)/Socket.cc \
+		$(SRCDIRNET)/InetAddress.cc \
 		$(SRCDIRNET)/SocketsOps.cc \
 		$(SRCDIRNET)/Poller.cc \
 		$(SRCDIRNET)/poller/DefaultPoller.cc \
 		$(SRCDIRNET)/poller/PollPoller.cc \
 		$(SRCDIRNET)/poller/EPollPoller.cc \
 		$(SRCDIRNET)/Timer.cc \
+		$(SRCDIRNET)/Buffer.cc \
 		$(SRCDIRBASE)/Logging.cc \
 		$(SRCDIRBASE)/Timestamp.cc \
 		$(SRCDIRBASE)/LogStream.cc \
@@ -39,6 +44,85 @@ SRCS = $(ROOTDIR)/test_net/TimerQueue_unittest.cc \
 		$(SRCDIRBASE)/CountDownLatch.cc \
 		$(SRCDIRBASE)/Exception.cc \
 		$(SRCDIRBASE)/Condition.cc 
+
+
+# #TcpClient
+# SRCS = $(ROOTDIR)/test_net/TcpClient_reg2.cc \
+# 		$(SRCDIRNET)/TcpClient.cc \
+# 		$(SRCDIRNET)/TcpConnection.cc \
+# 		$(SRCDIRNET)/Connector.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/EventLoopThread.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/Socket.cc \
+# 		$(SRCDIRNET)/InetAddress.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRNET)/Buffer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
+
+# #TcpClient
+# SRCS = $(ROOTDIR)/test_net/TcpClient_reg1.cc \
+# 		$(SRCDIRNET)/TcpClient.cc \
+# 		$(SRCDIRNET)/TcpConnection.cc \
+# 		$(SRCDIRNET)/Connector.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/EventLoopThread.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/Socket.cc \
+# 		$(SRCDIRNET)/InetAddress.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRNET)/Buffer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
+
+#TimerQueue
+# SRCS = $(ROOTDIR)/test_net/TimerQueue_unittest.cc \
+# 		$(SRCDIRNET)/TimerQueue.cc \
+# 		$(SRCDIRNET)/EventLoopThread.cc \
+# 		$(SRCDIRNET)/Channel.cc \
+# 		$(SRCDIRNET)/EventLoop.cc \
+# 		$(SRCDIRNET)/SocketsOps.cc \
+# 		$(SRCDIRNET)/Poller.cc \
+# 		$(SRCDIRNET)/poller/DefaultPoller.cc \
+# 		$(SRCDIRNET)/poller/PollPoller.cc \
+# 		$(SRCDIRNET)/poller/EPollPoller.cc \
+# 		$(SRCDIRNET)/Timer.cc \
+# 		$(SRCDIRBASE)/Logging.cc \
+# 		$(SRCDIRBASE)/Timestamp.cc \
+# 		$(SRCDIRBASE)/LogStream.cc \
+# 		$(SRCDIRBASE)/TimeZone.cc \
+# 		$(SRCDIRBASE)/Date.cc \
+# 		$(SRCDIRBASE)/Thread.cc \
+# 		$(SRCDIRBASE)/CountDownLatch.cc \
+# 		$(SRCDIRBASE)/Exception.cc \
+# 		$(SRCDIRBASE)/Condition.cc 
 
 #EventLoopThreadPool
 # SRCS = $(ROOTDIR)/test_net/EventLoopThreadPool_unittest.cc \

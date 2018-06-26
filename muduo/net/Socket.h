@@ -24,7 +24,7 @@ namespace muduo
 namespace net 
 {
 
-class InetAddrss;
+class InetAddress;
 
 ///
 /// Wrapper of socket file descriptor.
