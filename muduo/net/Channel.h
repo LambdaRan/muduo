@@ -118,7 +118,7 @@ class Channel : noncopyable
     static const int kWriteEvent;
 
     EventLoop *loop_;
-    const int fd_; // 暂存事件IOf d
+    const int fd_; // 暂存事件IO fd
     int events_; // 要监听的事件
     int revents_; // 发生的事件 // it's the received event types of epoll or poll
     int index_;   // used by Poller
